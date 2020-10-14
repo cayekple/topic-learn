@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Topic Learn</string>
+    <string name="topic_learn">Topic Learn</string>
+    <string name="learn_topics">Learn by Topics</string>
 </resources>
