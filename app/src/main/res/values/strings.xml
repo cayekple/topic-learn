@@ -5,9 +5,9 @@
     <string name="getting_started">Getting Started</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
-    <string name="hint_email">Enter your email address</string>
+    <string name="hint_email">Email address</string>
     <string name="prompt_password">Password</string>
-    <string name="hint_password">Enter your password</string>
+    <string name="hint_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome !"</string>
@@ -16,6 +16,11 @@
     <string name="login_failed">"Login failed"</string>
     <string name="password">Password</string>
     <string name="email">Email</string>
-    <string name="don_t_have_an_account_yet" tools:ignore="StringEscaping">Don't have an account yet?</string>
+    <string name="don_t_have_an_account_yet">Don\'t have an account yet?</string>
+    <string name="fullname">Fullname</string>
+    <string name="educational_level">Educational Level</string>
     <string name="sign_up">Sign Up</string>
+    <string name="action_search_text">Search</string>
+    <string name="action_setting_text">Account Settings</string>
+    <string name="action_logout_text">Logout</string>
 </resources>
