@@ -14,6 +14,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -88,8 +90,6 @@ public class AccountSetting extends AppCompatActivity {
                         String eduLevel = task.getResult().getString("educational_level");
                         String image = task.getResult().getString("image");
 
-                        mainImageUrl = Uri.parse(image);
-
                         txtFullName.setText(name);
                         txtEducationLevel.setText(eduLevel);
                         RequestOptions placeholderRequest = new RequestOptions();
@@ -119,19 +119,30 @@ public class AccountSetting extends AppCompatActivity {
 
                         userId = mFirebaseAuth.getCurrentUser().getUid();
 
-                        StorageReference imagePath = mStorageReference.child("profile_image").child(userId + ".jpg");
+                        final StorageReference imagePath = mStorageReference.child("profile_image")
+                                .child(userId + ".jpg");
+                        UploadTask uploadTask = imagePath.putFile(mainImageUrl);
 
-                        imagePath.putFile(mainImageUrl).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                        uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                             @Override
-                            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    storeFirestore(task, fullName, eduLevel);
-                                } else {
+                            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                                if (!task.isSuccessful()){
+                                    throw task.getException();
+                                }
+                                Log.d("Account Setting: ", "Image Uri :"+imagePath.getDownloadUrl());
+                                return imagePath.getDownloadUrl();
+                            }
+                        }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Uri> task) {
+                                if (task.isSuccessful()){
+                                    Uri downloadUri = task.getResult();
+                                    storeFirestore(downloadUri, fullName, eduLevel);
+                                }else{
                                     String error = task.getException().getMessage();
                                     Toast.makeText(AccountSetting.this, "Image Error: " + error, Toast.LENGTH_LONG).show();
                                     settingProgressBar.setVisibility(View.INVISIBLE);
                                 }
-
                             }
                         });
 
@@ -159,9 +170,8 @@ public class AccountSetting extends AppCompatActivity {
         });
     }
 
-    private void storeFirestore(@NonNull Task<UploadTask.TaskSnapshot> task, String fullName, String eduLevel) {
-        if (task != null) {
-            Task<Uri> downloadUri = task.getResult().getMetadata().getReference().getDownloadUrl();
+    private void storeFirestore(Uri downloadUri, String fullName, String eduLevel) {
+        if (downloadUri != null) {
             Toast.makeText(AccountSetting.this, "Uri: "+downloadUri, Toast.LENGTH_LONG).show();
             Map<String, String> userMap = new HashMap<>();
             userMap.put("name", fullName);
