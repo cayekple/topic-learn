@@ -3,6 +3,8 @@ package com.cayekple.topiclearn;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -42,13 +44,17 @@ public class MainActivity extends AppCompatActivity {
     private CircleImageView userProfileImage;
     private TextView txtFullname, txtEducationalLevel;
 
+    private HomeFragment mHomeFragment;
+    private NotificationFragment mNotificationFragment;
+    private ProfileFragment mProfileFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        txtFullname = findViewById(R.id.tvFullName);
-        txtEducationalLevel = findViewById(R.id.tvEducationalLevel);
+//        txtFullname = findViewById(R.id.tvFullName);
+//        txtEducationalLevel = findViewById(R.id.tvEducationalLevel);
         userProfileImage = findViewById(R.id.imgProfile);
         fabAdd = findViewById(R.id.fabAdd);
 
@@ -60,6 +66,31 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Topic Learn");
 
         nvMainBottomNav = findViewById(R.id.bnbMainBar);
+
+        mHomeFragment = new HomeFragment();
+        mNotificationFragment = new NotificationFragment();
+        mProfileFragment = new ProfileFragment();
+
+        replaceFragment(mHomeFragment);
+
+        nvMainBottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.bottom_action_home:
+                        replaceFragment(mHomeFragment);
+                        return true;
+                    case R.id.bottom_action_notification:
+                        replaceFragment(mNotificationFragment);
+                        return true;
+                    case R.id.bottom_action_profile:
+                        replaceFragment(mProfileFragment);
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        });
 
         fabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,11 +126,11 @@ public class MainActivity extends AppCompatActivity {
 
                         Toast.makeText(MainActivity.this, "Name: "+name, Toast.LENGTH_LONG).show();
 
-                        txtFullname.setText(name);
-                        txtEducationalLevel.setText(eduLevel);
+//                        txtFullname.setText(name);
+//                        txtEducationalLevel.setText(eduLevel);
                         RequestOptions placeholderRequest = new RequestOptions();
-                        placeholderRequest.placeholder(R.drawable.ic_profile);
-                        Glide.with(MainActivity.this).setDefaultRequestOptions(placeholderRequest).load(image).into(userProfileImage);
+//                        placeholderRequest.placeholder(R.drawable.ic_profile);
+//                        Glide.with(MainActivity.this).setDefaultRequestOptions(placeholderRequest).load(image).into(userProfileImage);
                     }else {
                         String error = task.getException().getMessage();
                         Toast.makeText(MainActivity.this, "Error: "+error, Toast.LENGTH_LONG).show();
@@ -139,5 +170,11 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    private void replaceFragment(Fragment fragment){
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.main_container, fragment);
+        fragmentTransaction.commit();
     }
 }

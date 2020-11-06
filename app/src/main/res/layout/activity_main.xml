@@ -18,147 +18,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:titleTextColor="@color/whiteTextColor" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardProfile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#FFF9EB"
-        android:paddingBottom="50dp"
-        app:cardBackgroundColor="#FFF9EB"
-        app:cardElevation="0dp"
-        app:cardMaxElevation="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainToolbar">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|center_horizontal"
-            android:background="@drawable/home_card"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:paddingBottom="30dp">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/imgProfile"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
-                android:src="@drawable/ic_profile"
-                app:civ_border_color="#FFE46371"
-                app:civ_border_width="5dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tvFullName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="24dp"
-                android:layout_toEndOf="@id/imgProfile"
-                android:layout_toRightOf="@id/imgProfile"
-                android:fontFamily="@font/roboto_bold"
-                android:text="John Doe"
-                android:textColor="#11253D"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.138"
-                app:layout_constraintStart_toEndOf="@+id/imgProfile"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tvEducationalLevel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tvFullName"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="8dp"
-                android:layout_toEndOf="@id/imgProfile"
-                android:layout_toRightOf="@id/imgProfile"
-                android:text="Senior High School"
-                android:textColor="#9C7346"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.13"
-                app:layout_constraintStart_toEndOf="@+id/imgProfile"
-                app:layout_constraintTop_toBottomOf="@+id/tvFullName" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </androidx.cardview.widget.CardView>
-
-
-    <TextView
-        android:id="@+id/tvTopicTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="My Topics"
-        android:textColor="#11253D"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.106"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardProfile" />
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imgTopic"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/ic_profile"
-        app:civ_border_color="#FFE46371"
-        app:civ_border_width="5dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTopicTitle" />
-
-    <TextView
-        android:id="@+id/tvTopic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Periodic Times Table"
-        android:textColor="#11253D"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.328"
-        app:layout_constraintStart_toEndOf="@+id/imgTopic"
-        app:layout_constraintTop_toBottomOf="@+id/tvTopicTitle" />
-
-    <TextView
-        android:id="@+id/tvSubTopic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="20 Sub-Topics now, 5 read"
-        android:textColor="#726E6E"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.45"
-        app:layout_constraintStart_toEndOf="@+id/imgTopic"
-        app:layout_constraintTop_toBottomOf="@+id/tvTopic" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="23dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
         android:clickable="true"
+        app:layout_constraintBottom_toTopOf="@+id/bnbMainBar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.854"
-        app:layout_constraintStart_toEndOf="@+id/tvTopicTitle"
-        app:layout_constraintTop_toBottomOf="@+id/cardProfile"
-        app:srcCompat="@mipmap/ic_add" />
+        app:srcCompat="@mipmap/ic_add"
+        android:contentDescription="TODO" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bnbMainBar"
@@ -167,8 +38,22 @@
         android:background="@color/textInputColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_menu" />
+
+    <FrameLayout
+        android:id="@+id/main_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bnbMainBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainToolbar"
+        app:layout_constraintVertical_bias="0.0">
+
+    </FrameLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
