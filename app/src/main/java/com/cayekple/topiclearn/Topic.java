@@ -1,15 +1,20 @@
 package com.cayekple.topiclearn;
 
 
+import java.util.Date;
+
 public class Topic {
     public String user_id, image, topic;
 
+    public Date timestamp;
+
     public Topic() {}
 
-    public Topic(String user_id, String image, String topic) {
+    public Topic(String user_id, String image, String topic, Date timestamp) {
         this.user_id = user_id;
         this.image = image;
         this.topic = topic;
+        this.timestamp = timestamp;
     }
 
     public String getUser_id() {
@@ -36,5 +41,11 @@ public class Topic {
         this.topic = topic;
     }
 
+    public Date getTimestamp() {
+        return timestamp;
+    }
 
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
+    }
 }

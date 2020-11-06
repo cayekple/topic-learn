@@ -41,9 +41,6 @@ public class MainActivity extends AppCompatActivity {
 
     private String userId;
 
-    private CircleImageView userProfileImage;
-    private TextView txtFullname, txtEducationalLevel;
-
     private HomeFragment mHomeFragment;
     private NotificationFragment mNotificationFragment;
     private ProfileFragment mProfileFragment;
@@ -53,9 +50,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        txtFullname = findViewById(R.id.tvFullName);
-//        txtEducationalLevel = findViewById(R.id.tvEducationalLevel);
-        userProfileImage = findViewById(R.id.imgProfile);
         fabAdd = findViewById(R.id.fabAdd);
 
         mAuth = FirebaseAuth.getInstance();

@@ -17,41 +17,41 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class TopicRecyclerAdapter extends RecyclerView.Adapter<TopicRecyclerAdapter.ViewHolder> {
+public class ProfileTopicRecyclerAdapter extends RecyclerView.Adapter<ProfileTopicRecyclerAdapter.ViewHolder> {
 
-    public List<Topic> mTopicList;
+    public List<Topic> mProfileTopicList;
     public Context mContext;
 
-    public TopicRecyclerAdapter(List<Topic> mTopicList) {
-        this.mTopicList = mTopicList;
+    public ProfileTopicRecyclerAdapter(List<Topic> profileTopicList) {
+        this.mProfileTopicList = profileTopicList;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.topic_list_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.profile_topic_list_item, parent, false);
         mContext = parent.getContext();
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String topicData = mTopicList.get(position).getTopic();
+        String topicData = mProfileTopicList.get(position).getTopic();
         holder.setTopicText(topicData);
 
-        String image = mTopicList.get(position).getImage();
+        String image = mProfileTopicList.get(position).getImage();
         holder.setTopicImage(image);
 
-        long millisecond = mTopicList.get(position).getTimestamp().getTime();
+        long millisecond = mProfileTopicList.get(position).getTimestamp().getTime();
         String dateString = DateFormat.getDateInstance().format(new Date(millisecond));
     }
 
     @Override
     public int getItemCount() {
-        return mTopicList.size();
+        return mProfileTopicList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private View mView;
 
@@ -60,20 +60,24 @@ public class TopicRecyclerAdapter extends RecyclerView.Adapter<TopicRecyclerAdap
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             mView = itemView;
         }
 
         public void setTopicText(String topicText){
-            topicView = mView.findViewById(R.id.txtTopicTitle);
+            topicView = mView.findViewById(R.id.tvTopic);
             topicView.setText(topicText);
         }
 
         public void setTopicImage(String downloadUrl){
-            topicImageView = mView.findViewById(R.id.circleImageView);
+            topicImageView = mView.findViewById(R.id.imgTopic);
             RequestOptions placeholderRequest = new RequestOptions();
             placeholderRequest.placeholder(R.drawable.ic_profile);
             Glide.with(mContext).setDefaultRequestOptions(placeholderRequest).load(downloadUrl).into(topicImageView);
+        }
+
+        @Override
+        public void onClick(View v) {
+
         }
     }
 }
