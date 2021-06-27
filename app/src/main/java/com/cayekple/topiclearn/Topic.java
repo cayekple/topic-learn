@@ -4,17 +4,18 @@ package com.cayekple.topiclearn;
 import java.util.Date;
 
 public class Topic {
-    public String user_id, image, topic;
+    public String user_id, image, topic, topicId;
 
     public Date timestamp;
 
     public Topic() {}
 
-    public Topic(String user_id, String image, String topic, Date timestamp) {
+    public Topic(String user_id, String image, String topic, Date timestamp, String topicId) {
         this.user_id = user_id;
         this.image = image;
         this.topic = topic;
         this.timestamp = timestamp;
+        this.topicId = topicId;
     }
 
     public String getUser_id() {
@@ -37,6 +38,10 @@ public class Topic {
         return topic;
     }
 
+    public String getTopicId() {
+        return topicId;
+    }
+
     public void setTopic(String topic) {
         this.topic = topic;
     }
@@ -47,5 +52,9 @@ public class Topic {
 
     public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public void setTopicIdp(String topicId) {
+        this.topicId = topicId;
     }
 }

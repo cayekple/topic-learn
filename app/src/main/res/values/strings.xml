@@ -30,4 +30,7 @@
     <string name="bottom_account_text">Profile</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tab_title">Lessons</string>
+    <string name="welcome_text">Welcome to Topic Learn</string>
+    <string name="intro_text">Learn topics in an insightful way. Add topics of interest to your profile.</string>
 </resources>

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,7 +82,9 @@ public class ProfileFragment extends Fragment {
 
         if (user != null){
             userId = mAuth.getCurrentUser().getUid();
-            mFirebaseFirestore.collection("Users").document(userId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            mFirebaseFirestore.collection("Users")
+                    .document(userId).get()
+                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     if (task.isSuccessful()){
@@ -103,12 +106,16 @@ public class ProfileFragment extends Fragment {
             });
         }
 
-        mFirebaseFirestore.collection("Topics").addSnapshotListener(new EventListener<QuerySnapshot>() {
+
+        mFirebaseFirestore.collection("Topics")
+                .whereEqualTo("user_id", userId)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                 for (DocumentChange documentChange : value.getDocumentChanges()){
                     if (documentChange.getType() == DocumentChange.Type.ADDED){
                         Topic topic = documentChange.getDocument().toObject(Topic.class);
+                        Log.d("TOPICLESSON", "Data: "+topic);
                         mProfileTopicList.add(topic);
 
                         mProfileTopicRecyclerAdapter.notifyDataSetChanged();
@@ -116,6 +123,8 @@ public class ProfileFragment extends Fragment {
                 }
             }
         });
+
+        Log.d("TOPICLESSON", "Data: "+mProfileTopicList);
 
         return view;
     }

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -22,8 +23,10 @@ public class ProfileTopicRecyclerAdapter extends RecyclerView.Adapter<ProfileTop
     public List<Topic> mProfileTopicList;
     public Context mContext;
 
-    public ProfileTopicRecyclerAdapter(List<Topic> profileTopicList) {
-        this.mProfileTopicList = profileTopicList;
+    private FirebaseFirestore mFirebaseFirestore;
+
+    public ProfileTopicRecyclerAdapter(List<Topic> mProfileTopicList) {
+        this.mProfileTopicList = mProfileTopicList;
     }
 
     @NonNull
@@ -39,8 +42,19 @@ public class ProfileTopicRecyclerAdapter extends RecyclerView.Adapter<ProfileTop
         String topicData = mProfileTopicList.get(position).getTopic();
         holder.setTopicText(topicData);
 
+        String userId = mProfileTopicList.get(position).getUser_id();
+
         String image = mProfileTopicList.get(position).getImage();
         holder.setTopicImage(image);
+
+//        mFirebaseFirestore.collection("Topics").document(userId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                if (task.isSuccessful()){
+//
+//                }
+//            }
+//        });
 
         long millisecond = mProfileTopicList.get(position).getTimestamp().getTime();
         String dateString = DateFormat.getDateInstance().format(new Date(millisecond));

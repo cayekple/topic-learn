@@ -12,19 +12,30 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class TopicRecyclerAdapter extends RecyclerView.Adapter<TopicRecyclerAdapter.ViewHolder> {
+public class TopicRecyclerAdapter extends FirestoreRecyclerAdapter<Topic, TopicRecyclerAdapter.ViewHolder> {
 
     public List<Topic> mTopicList;
     public Context mContext;
 
-    public TopicRecyclerAdapter(List<Topic> mTopicList) {
-        this.mTopicList = mTopicList;
+    private OnCardClickListener mOnCardClickListener;
+
+    /**
+     * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
+     * FirestoreRecyclerOptions} for configuration options.
+     *
+     * @param options
+     */
+    public TopicRecyclerAdapter(@NonNull FirestoreRecyclerOptions<Topic> options) {
+        super(options);
     }
+
 
     @NonNull
     @Override
@@ -35,21 +46,24 @@ public class TopicRecyclerAdapter extends RecyclerView.Adapter<TopicRecyclerAdap
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String topicData = mTopicList.get(position).getTopic();
-        holder.setTopicText(topicData);
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position, @NonNull Topic topic) {
 
-        String image = mTopicList.get(position).getImage();
-        holder.setTopicImage(image);
+        holder.setTopicText(topic.getTopic());
+        holder.setTopicImage(topic.getImage());
 
-        long millisecond = mTopicList.get(position).getTimestamp().getTime();
+        long millisecond = topic.getTimestamp().getTime();
         String dateString = DateFormat.getDateInstance().format(new Date(millisecond));
+
+//        final String topicId = mTopicList.get(position).getTopicId();
+//
+//        holder.topicImageView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mOnCardClickListener.onCardClick(topicId);
+//            }
+//        });
     }
 
-    @Override
-    public int getItemCount() {
-        return mTopicList.size();
-    }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
