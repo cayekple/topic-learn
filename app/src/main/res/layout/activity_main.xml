@@ -6,13 +6,119 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/mainToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:titleTextColor="@color/whiteTextColor"></androidx.appcompat.widget.Toolbar>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainToolbar">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgProfile"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/ic_profile"
+            app:civ_border_color="#FFE46371"
+            app:civ_border_width="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mainToolbar" />
+
+        <TextView
+            android:id="@+id/tvFullname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="John Doe"
+            android:textColor="#11253D"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.288"
+            app:layout_constraintStart_toEndOf="@+id/imgProfile"
+            app:layout_constraintTop_toBottomOf="@+id/mainToolbar" />
+
+        <TextView
+            android:id="@+id/tvEducationalLevel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Senior High School"
+            android:textColor="#9C7346"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.288"
+            app:layout_constraintStart_toEndOf="@+id/imgProfile"
+            app:layout_constraintTop_toBottomOf="@+id/tvFullname" />
+    </androidx.cardview.widget.CardView>
+
+
     <TextView
+        android:id="@+id/tvTopicTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="56dp"
+        android:text="My Topics"
+        android:textColor="#11253D"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.106"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardProfile" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgTopic"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/ic_profile"
+        app:civ_border_color="#FFE46371"
+        app:civ_border_width="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTopicTitle" />
+
+    <TextView
+        android:id="@+id/tvTopic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Periodic Times Table"
+        android:textColor="#11253D"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.328"
+        app:layout_constraintStart_toEndOf="@+id/imgTopic"
+        app:layout_constraintTop_toBottomOf="@+id/tvTopicTitle" />
+
+    <TextView
+        android:id="@+id/tvSubTopic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="20 Sub-Topics now, 5 read"
+        android:textColor="#726E6E"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.45"
+        app:layout_constraintStart_toEndOf="@+id/imgTopic"
+        app:layout_constraintTop_toBottomOf="@+id/tvTopic" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "826107299433",
+    "firebase_url": "https://topic-learn.firebaseio.com",
+    "project_id": "topic-learn",
+    "storage_bucket": "topic-learn.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:826107299433:android:3feea4960f173a408584f8",
+        "android_client_info": {
+          "package_name": "com.cayekple.topiclearn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "826107299433-3hei7tgs6idu25l33ctj2ld88qklc0t1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDY9Zxos8M_1BfeIH8ayJVsnkbt1YH9A-s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "826107299433-3hei7tgs6idu25l33ctj2ld88qklc0t1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
